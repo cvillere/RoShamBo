@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class BeginMatchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,53 +17,51 @@ class ViewController: UIViewController {
     
     //MARK outlets:
     
-    
+    @IBOutlet weak var RockImage: UIButton!
+    @IBOutlet weak var PaperImage: UIButton!
+    @IBOutlet weak var ScissorsImage: UIButton!
     
     @IBOutlet weak var Rock: UILabel!
     @IBOutlet weak var Paper: UILabel!
     @IBOutlet weak var Scissors: UILabel!
     
+    
+    
     func randomPlayValue() -> Int {
         
         let playValue = arc4random_uniform(3)
+        let gameValue = Int(playValue)
         
-        return Int(playValue)
+        return gameValue
         
     }
     
-
-    @IBAction func YourPlay() {
+    
+    
+    @IBAction func YouPlayRock(){
+        
+        let controller: ResultsViewController
+        controller = storyboard?.instantiateViewController(withIdentifier: "ResultsViewController") as! ResultsViewController
+        
+        //set yourPlay and opponentPlay values
+        controller.yourPlay = 1
+        controller.opponentPlay = randomPlayValue()
+        
+        present(controller, animated: true, completion: nil)
         
         
-        
-    }
-
-/*
-    func OpponentPlay () {
-     
-        
-        switch gameNumber {
             
-        case gameNumber == 0:
-            return
-            //opponent's play is rock
-        
-        case gameNumber == 1:
-            //Opponent's play is paper
-            
-        case gameNumber == 2:
-            //Opponent's play is Scissors
-        
-        default:
-            break
             
         }
-        
-*/
-        
+    
+
         
     }
+    
+        
+        
 
 
-}
+
+
 
