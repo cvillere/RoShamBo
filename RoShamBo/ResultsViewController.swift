@@ -18,6 +18,8 @@ class ResultsViewController: UIViewController {
     var opponentPlay: Int?
     var yourPlay: Int?
     
+
+    
     //Mark: Outlets
     
     @IBOutlet weak var MatchResult: UILabel!
@@ -28,20 +30,22 @@ class ResultsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool){
         if let opponentPlay = opponentPlay, let yourPlay = yourPlay {
+            print(opponentPlay)
+            print(yourPlay)
             switch (opponentPlay, yourPlay) {
-                case (1, 1), (1, 1), (2, 2), (2, 2), (3, 3), (3, 3):
+                case (1, 1), (1, 1), (2, 2), (2, 2), (0, 0), (0, 0):
                     self.MatchResult.text = "You Tie!"
+                case (0, 1):
+                    self.MatchResult.text = "You Win!"
+                case (1, 0):
+                    self.MatchResult.text = "You Lose!"
+                case (0, 2):
+                    self.MatchResult.text = "You Lose!"
+                case (2, 0):
+                    self.MatchResult.text = "You Win!"
                 case (1, 2):
                     self.MatchResult.text = "You Win!"
                 case (2, 1):
-                    self.MatchResult.text = "You Lose!"
-                case (1, 3):
-                    self.MatchResult.text = "You Lose!"
-                case (3, 1):
-                    self.MatchResult.text = "You Win!"
-                case (2, 3):
-                    self.MatchResult.text = "You Win!"
-                case (3, 2):
                     self.MatchResult.text = "You Lose!"
                 default:
                     break
@@ -49,6 +53,7 @@ class ResultsViewController: UIViewController {
             }
         }
 
+        
         
 
 
@@ -58,6 +63,10 @@ class ResultsViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+    @IBAction func PlayAgainButton(_ sender: Any) {
+        
+        self.presentingViewController!.dismiss(animated: true, completion: nil)
+    }
     
 
     

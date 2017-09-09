@@ -44,19 +44,48 @@ class BeginMatchViewController: UIViewController {
         controller = storyboard?.instantiateViewController(withIdentifier: "ResultsViewController") as! ResultsViewController
         
         //set yourPlay and opponentPlay values
-        controller.yourPlay = 1
+        controller.yourPlay = 0
         controller.opponentPlay = randomPlayValue()
         
         present(controller, animated: true, completion: nil)
         
-        
-            
-            
-        }
+    }
     
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "PlayPaper"{
+            
+        
+            let controller = segue.destination as! ResultsViewController
+        
+            controller.yourPlay = 1
+            controller.opponentPlay = randomPlayValue()
+        
+        }
+        
+        if segue.identifier == "PlayScissors"{
+            
+            
+            let controller = segue.destination as! ResultsViewController
+            
+            controller.yourPlay = 2
+            controller.opponentPlay = randomPlayValue()
+        }
         
     }
+    
+    @IBAction func YouPlayPaper(){
+       
+        self.performSegue(withIdentifier: "PlayPaper", sender: self)
+        
+    }
+    
+    @IBAction func YouPlayScissors() {
+        
+        self.performSegue(withIdentifier: "PlayScissors", sender: self)
+        
+    }
+}
     
         
         
